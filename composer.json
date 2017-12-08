@@ -1,0 +1,21 @@
+{
+    "name": "reprover/amap",
+    "description": "高德开放平台API封装SDK",
+    "require": {
+        "php": ">=7.0.0",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sky Lee",
+            "email": "mydr@vip.qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Reprover\\Amap\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
