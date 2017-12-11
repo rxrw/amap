@@ -104,7 +104,10 @@ trait HasHttpRequest
      */
     protected function request($method, $endpoint, $options)
     {
-        return $this->unwrapResponse($this->getHttpClient($this->getBaseOptions())->{$method}($endpoint, $options));
+        $uri = method_exists($this, "setUri") ? $this->setUri($endpoint) : $endpoint;
+        if ($this->base_config->get("use_https"))
+            $uri = str_replace("http", "https", $uri);
+        return $this->unwrapResponse($this->getHttpClient($this->getBaseOptions())->{$method}($uri, $options));
     }
 
     /**

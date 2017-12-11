@@ -10,7 +10,7 @@ namespace Reprover\Amap\Gateways\Geofence;
 
 
 use Reprover\Amap\Gateways\Gateway;
-use Reprover\Amap\Results\GeofenceshowResult;
+use Reprover\Amap\Results\GeofenceShowResult;
 
 class ShowGateway extends Gateway
 {
@@ -29,12 +29,12 @@ class ShowGateway extends Gateway
     ];
 
     /**
-     * @return GeofenceshowResult
+     * @return GeofenceShowResult
      * @throws \Reprover\Amap\Exceptions\CannotParseResponseException
      * @throws \Reprover\Amap\Exceptions\HttpException
      */
     public function ask()
     {
-        return new GeofenceshowResult($this->sendRequest());
+        return new GeofenceShowResult($this->sendRequest());
     }
 }

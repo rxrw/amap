@@ -12,7 +12,7 @@ namespace Reprover\Amap\Results;
 use Reprover\Amap\Support\Result;
 use Reprover\Amap\Traits\HasErrCode;
 
-class GenfenceupdateResult extends Result
+class GenfenceUpdateResult extends Result
 {
 
     use HasErrCode;

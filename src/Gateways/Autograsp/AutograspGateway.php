@@ -6,13 +6,13 @@
  * Time: 18:24
  */
 
-namespace Reprover\Amap\Gateways\Autograsp;
+namespace Reprover\Amap\Gateways\AutoGrasp;
 
 
 use Reprover\Amap\Gateways\Gateway;
-use Reprover\Amap\Results\AutograspResult;
+use Reprover\Amap\Results\AutoGraspResult;
 
-class AutograspGateway extends Gateway
+class AutoGraspGateway extends Gateway
 {
 
     protected $uri="http://restapi.amap.com/v3/autograsp";
@@ -26,12 +26,12 @@ class AutograspGateway extends Gateway
     ];
 
     /**
-     * @return AutograspResult
+     * @return AutoGraspResult
      * @throws \Reprover\Amap\Exceptions\CannotParseResponseException
      * @throws \Reprover\Amap\Exceptions\HttpException
      */
     public function ask()
     {
-        return new AutograspResult($this->sendRequest());
+        return new AutoGraspResult($this->sendRequest());
     }
 }

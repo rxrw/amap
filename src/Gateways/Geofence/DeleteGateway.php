@@ -36,4 +36,9 @@ class DeleteGateway extends Gateway
     {
         return $this->delete($this->uri, $this->params);
     }
+
+    protected function setUri($endpoint)
+    {
+        return $endpoint . "?key=" . $this->config->get("key") . "&gid=" . $this->config->get("gid");
+    }
 }

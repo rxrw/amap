@@ -10,7 +10,7 @@ namespace Reprover\Amap\Gateways\Geofence;
 
 
 use Reprover\Amap\Gateways\Gateway;
-use Reprover\Amap\Results\GenfencestatusResult;
+use Reprover\Amap\Results\GenfenceStatusResult;
 
 class StatusGateway extends Gateway
 {
@@ -25,12 +25,12 @@ class StatusGateway extends Gateway
     ];
 
     /**
-     * @return GenfencestatusResult
+     * @return GenfenceStatusResult
      * @throws \Reprover\Amap\Exceptions\CannotParseResponseException
      * @throws \Reprover\Amap\Exceptions\HttpException
      */
     public function ask()
     {
-        return new GenfencestatusResult($this->sendRequest());
+        return new GenfenceStatusResult($this->sendRequest());
     }
 }

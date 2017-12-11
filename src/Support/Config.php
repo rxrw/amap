@@ -26,5 +26,10 @@ class Config
             return null;
     }
 
+    public function set($key, $value)
+    {
+        $this->config[$key] = $value;
+    }
+
 
 }

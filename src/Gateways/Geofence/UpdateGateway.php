@@ -10,34 +10,35 @@ namespace Reprover\Amap\Gateways\Geofence;
 
 
 use Reprover\Amap\Gateways\Gateway;
-use Reprover\Amap\Results\GenfenceupdateResult;
+use Reprover\Amap\Results\GenfenceUpdateResult;
 
 class UpdateGateway extends Gateway
 {
 
     protected $uri = "http://restapi.amap.com/v4/geofence/meta";
-    protected $rules=[
+    protected $rules = [
         "name" => "required",
-        "center" => "unique|required",
-        "radius" => "unique|required",
-        "points" => "unique",
+        "center" => "switchMany:location:center,radius",
+        "radius" => "switchMany:location:center,radius",
+        "points" => "switchMany:location:points",
         "enable" => "required",
         "valid_time" => "nullable",
-        "fixed_date" => "least",
-        "repeat" => "least",
-        "time"=>"nullable",
-        "desc"=>"nullable",
-        "alert_condition"=>"nullable"
+        "fixed_date" => "switch:time",
+        "repeat" => "switch:time",
+        "time" => "nullable",
+        "desc" => "nullable",
+        "alert_condition" => "nullable",
+        "gid" => "required"
     ];
 
     /**
-     * @return GenfenceupdateResult
+     * @return GenfenceUpdateResult
      * @throws \Reprover\Amap\Exceptions\CannotParseResponseException
      * @throws \Reprover\Amap\Exceptions\HttpException
      */
     public function ask()
     {
-        return new GenfenceupdateResult($this->sendRequest());
+        return new GenfenceUpdateResult($this->sendRequest());
     }
 
     /**
@@ -48,5 +49,10 @@ class UpdateGateway extends Gateway
     public function sendRequest()
     {
         return $this->patch($this->uri, $this->params);
+    }
+
+    protected function setUri($endpoint)
+    {
+        return $endpoint . "?key=" . $this->config->get("key") . "&gid=" . $this->config->get("gid");
     }
 }

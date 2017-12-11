@@ -6,7 +6,7 @@
  * Time: 18:27
  */
 
-namespace Reprover\Amap\Gateways\Staticmaps;
+namespace Reprover\Amap\Gateways\StaticMaps;
 
 
 use Reprover\Amap\Gateways\Gateway;
@@ -35,7 +35,6 @@ class StaticMapsGateway extends Gateway
      */
     public function ask()
     {
-        dd($this->sendRequest());
         return $this->sendRequest();
     }
 }

@@ -6,13 +6,13 @@
  * Time: 09:46
  */
 
-namespace Reprover\Amap\Gateways\Inputtips;
+namespace Reprover\Amap\Gateways\InputTips;
 
 
 use Reprover\Amap\Gateways\Gateway;
-use Reprover\Amap\Results\InputtipsResult;
+use Reprover\Amap\Results\InputTipsResult;
 
-class InputtipsGateway extends Gateway
+class InputTipsGateway extends Gateway
 {
 
     protected $uri = "http://restapi.amap.com/v3/assistant/inputtips";
@@ -29,12 +29,12 @@ class InputtipsGateway extends Gateway
     ];
 
     /**
-     * @return InputtipsResult
+     * @return InputTipsResult
      * @throws \Reprover\Amap\Exceptions\CannotParseResponseException
      * @throws \Reprover\Amap\Exceptions\HttpException
      */
     public function ask()
     {
-        return new InputtipsResult($this->sendRequest());
+        return new InputTipsResult($this->sendRequest());
     }
 }
