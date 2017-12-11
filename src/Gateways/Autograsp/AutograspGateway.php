@@ -1,0 +1,37 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: li
+ * Date: 2017/12/8
+ * Time: 18:24
+ */
+
+namespace Reprover\Amap\Gateways\Autograsp;
+
+
+use Reprover\Amap\Gateways\Gateway;
+use Reprover\Amap\Results\AutograspResult;
+
+class AutograspGateway extends Gateway
+{
+
+    protected $uri="http://restapi.amap.com/v3/autograsp";
+    protected $rules=[
+        "key"=>"required",
+        "cardid"=>"required",
+        "locations"=>"required",
+        "time"=>"required",
+        "direction"=>"required",
+        "speed"=>"required",
+    ];
+
+    /**
+     * @return AutograspResult
+     * @throws \Reprover\Amap\Exceptions\CannotParseResponseException
+     * @throws \Reprover\Amap\Exceptions\HttpException
+     */
+    public function ask()
+    {
+        return new AutograspResult($this->sendRequest());
+    }
+}
