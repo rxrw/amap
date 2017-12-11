@@ -39,12 +39,21 @@ abstract class Gateway implements GatewayInterface
      */
     final public function validate()
     {
+        $switch = 0;
+        $hasSwitch = false;
         foreach ($this->rules as $k => $v) {
             if ($v == "required" && !$this->config->get($k))
                 throw new InvalidArgumentException("The {" . $k . "} is Required.");
+            if ($v == "switch") {
+                $switch++;
+                $hasSwitch = true;
+            }
             if ($this->config->get($k))
                 $this->params[$k] = $this->config->get($k);
         }
+        if ($switch == 0 && $hasSwitch)
+            throw new InvalidArgumentException("Some Param Unable To ");
+
         if (method_exists($this, "unWrapParams"))
             $this->unWrapParams();
     }

@@ -47,7 +47,42 @@ trait HasHttpRequest
             $options['form_params'] = $params;
         else
             $options['body'] = $params;
-        return $this->request('post', $endpoint, !empty($options) ?: []);
+        return $this->request('post', $endpoint, !empty($options) ? $options : []);
+    }
+
+
+    /**
+     * @param string $endpoint 补全url
+     * @param array $params 请求参数
+     * @param array $headers 请求头
+     * @return Object
+     * @throws CannotParseResponseException
+     * @throws HttpException
+     */
+    protected function delete($endpoint, $params, $headers = [])
+    {
+        return $this->request('delete', $endpoint, [
+            'header' => $headers,
+            'query' => $params
+        ]);
+    }
+
+
+    /**
+     * @param $endpoint
+     * @param array $params
+     * @param array ...$options
+     * @return Object
+     * @throws CannotParseResponseException
+     * @throws HttpException
+     */
+    protected function patch($endpoint, $params = [], ...$options)
+    {
+        if (is_array($params))
+            $options['form_params'] = $params;
+        else
+            $options['body'] = $params;
+        return $this->request('patch', $endpoint, !empty($options) ? $options : []);
     }
 
     /**
