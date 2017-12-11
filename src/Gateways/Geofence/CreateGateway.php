@@ -10,7 +10,7 @@ namespace Reprover\Amap\Gateways\Geofence;
 
 
 use Reprover\Amap\Gateways\Gateway;
-use Reprover\Amap\Results\GeofencecreateResult;
+use Reprover\Amap\Results\GeofenceCreateResult;
 
 class CreateGateway extends Gateway
 {
@@ -18,26 +18,26 @@ class CreateGateway extends Gateway
     protected $uri = 'http://restapi.amap.com/v4/geofence/meta';
     protected $rules = [
         "name" => "required",
-        "center" => "unique|required",
-        "radius" => "unique|required",
-        "points" => "unique",
+        "center" => "switchMany:location:center,radius",
+        "radius" => "switchMany:location:center,radius",
+        "points" => "switchMany:location:points",
         "enable" => "required",
         "valid_time" => "nullable",
-        "fixed_date" => "least",
-        "repeat" => "least",
-        "time"=>"nullable",
-        "desc"=>"nullable",
-        "alert_condition"=>"nullable"
+        "fixed_date" => "switch:time",
+        "repeat" => "switch:time",
+        "time" => "nullable",
+        "desc" => "nullable",
+        "alert_condition" => "nullable",
     ];
 
     /**
-     * @return GeofencecreateResult
+     * @return GeofenceCreateResult
      * @throws \Reprover\Amap\Exceptions\CannotParseResponseException
      * @throws \Reprover\Amap\Exceptions\HttpException
      */
     public function ask()
     {
-        return new GeofencecreateResult($this->sendRequest());
+        return new GeofenceCreateResult($this->sendRequest());
     }
 
     /**
@@ -47,6 +47,11 @@ class CreateGateway extends Gateway
      */
     public function sendRequest()
     {
-        return $this->post($this->uri,$this->params);
+        return $this->post($this->uri, $this->params);
+    }
+
+    protected function setUri($endpoint)
+    {
+        return $endpoint . "?key=" . $this->config->get("key");
     }
 }

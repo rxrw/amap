@@ -11,7 +11,7 @@ namespace Reprover\Amap\Results;
 
 use Reprover\Amap\Support\Result;
 
-class TrafficstatusResult extends Result
+class TrafficStatusResult extends Result
 {
 
     protected function setData()

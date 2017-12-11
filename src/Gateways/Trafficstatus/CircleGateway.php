@@ -6,11 +6,11 @@
  * Time: 09:53
  */
 
-namespace Reprover\Amap\Gateways\Trafficstatus;
+namespace Reprover\Amap\Gateways\TrafficStatus;
 
 
 use Reprover\Amap\Gateways\Gateway;
-use Reprover\Amap\Results\TrafficstatusResult;
+use Reprover\Amap\Results\TrafficStatusResult;
 
 class CircleGateway extends Gateway
 {
@@ -27,12 +27,12 @@ class CircleGateway extends Gateway
     ];
 
     /**
-     * @return TrafficstatusResult
+     * @return TrafficStatusResult
      * @throws \Reprover\Amap\Exceptions\CannotParseResponseException
      * @throws \Reprover\Amap\Exceptions\HttpException
      */
     public function ask()
     {
-        return new TrafficstatusResult($this->sendRequest());
+        return new TrafficStatusResult($this->sendRequest());
     }
 }

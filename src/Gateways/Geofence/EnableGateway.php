@@ -10,7 +10,7 @@ namespace Reprover\Amap\Gateways\Geofence;
 
 
 use Reprover\Amap\Gateways\Gateway;
-use Reprover\Amap\Results\GenfenceenableResult;
+use Reprover\Amap\Results\GenfenceEnableResult;
 
 class EnableGateway extends Gateway
 {
@@ -21,13 +21,13 @@ class EnableGateway extends Gateway
     ];
 
     /**
-     * @return GenfenceenableResult
+     * @return GenfenceEnableResult
      * @throws \Reprover\Amap\Exceptions\CannotParseResponseException
      * @throws \Reprover\Amap\Exceptions\HttpException
      */
     public function ask()
     {
-        return new GenfenceenableResult($this->sendRequest());
+        return new GenfenceEnableResult($this->sendRequest());
     }
 
     /**
@@ -38,5 +38,10 @@ class EnableGateway extends Gateway
     public function sendRequest()
     {
         return $this->patch($this->uri, $this->params);
+    }
+
+    protected function setUri($endpoint)
+    {
+        return $endpoint . "?key=" . $this->config->get("key") . "&gid=" . $this->config->get("gid");
     }
 }

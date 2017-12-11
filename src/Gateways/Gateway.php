@@ -12,6 +12,7 @@ namespace Reprover\Amap\Gateways;
 use Reprover\Amap\Contracts\GatewayInterface;
 use Reprover\Amap\Exceptions\InvalidArgumentException;
 use Reprover\Amap\Support\Config;
+use Reprover\Amap\Support\Validator;
 use Reprover\Amap\Traits\HasHttpRequest;
 
 abstract class Gateway implements GatewayInterface
@@ -22,16 +23,17 @@ abstract class Gateway implements GatewayInterface
     protected $rules = [];
     protected $params;
     protected $uri = "";
+    protected $base_config;
 
     /**
      * Gateway constructor.
      * @param $config
-     * @throws InvalidArgumentException
+     * @param array $base_config
      */
-    public function __construct($config)
+    public function __construct($config, $base_config = [])
     {
         $this->config = new Config($config);
-        $this->validate();
+        $this->base_config = new Config($base_config);
     }
 
     /**
@@ -39,21 +41,8 @@ abstract class Gateway implements GatewayInterface
      */
     final public function validate()
     {
-        $switch = 0;
-        $hasSwitch = false;
-        foreach ($this->rules as $k => $v) {
-            if ($v == "required" && !$this->config->get($k))
-                throw new InvalidArgumentException("The {" . $k . "} is Required.");
-            if ($v == "switch") {
-                $switch++;
-                $hasSwitch = true;
-            }
-            if ($this->config->get($k))
-                $this->params[$k] = $this->config->get($k);
-        }
-        if ($switch == 0 && $hasSwitch)
-            throw new InvalidArgumentException("Some Param Unable To ");
-
+        $validate = new Validator($this->config, $this->rules);
+        $this->params = $validate->validate();
         if (method_exists($this, "unWrapParams"))
             $this->unWrapParams();
     }
@@ -64,10 +53,22 @@ abstract class Gateway implements GatewayInterface
      * @return Object
      * @throws \Reprover\Amap\Exceptions\CannotParseResponseException
      * @throws \Reprover\Amap\Exceptions\HttpException
+     * @throws InvalidArgumentException
      */
     public function sendRequest()
     {
+        $this->validate();
         return $this->get($this->uri, $this->params);
+    }
+
+    public function setKey($key)
+    {
+        $this->config->set("key", $key);
+    }
+
+    public function useHttps($status = true)
+    {
+        $this->base_config->set('use_https', $status);
     }
 
 }

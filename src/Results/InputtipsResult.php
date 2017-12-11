@@ -11,7 +11,7 @@ namespace Reprover\Amap\Results;
 
 use Reprover\Amap\Support\Result;
 
-class InputtipsResult extends Result
+class InputTipsResult extends Result
 {
 
     protected function setData()

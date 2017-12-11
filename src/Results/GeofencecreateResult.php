@@ -12,7 +12,7 @@ namespace Reprover\Amap\Results;
 use Reprover\Amap\Support\Result;
 use Reprover\Amap\Traits\HasErrCode;
 
-class GeofencecreateResult extends Result
+class GeofenceCreateResult extends Result
 {
 
     use HasErrCode;

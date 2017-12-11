@@ -11,19 +11,18 @@ namespace Reprover\Amap;
 
 use Reprover\Amap\Contracts\GatewayInterface;
 use Reprover\Amap\Exceptions\InvalidArgumentException;
+use Reprover\Amap\Support\ClassmapConvert;
 
 class Amap
 {
 
     protected $driver;
     protected $gateways;
+    protected $base_config;
 
-    /**
-     * Amap constructor.
-     *
-     */
-    public function __construct()
+    public function __construct($base_config=[])
     {
+        $this->base_config = $base_config;
     }
 
     /**
@@ -46,10 +45,10 @@ class Amap
         if (!$this->driver) {
             throw new InvalidArgumentException("You Must Call Method {use} First.");
         }
-        if (!file_exists(__DIR__ . '/Gateways/' . ucfirst($this->driver) . '/' . ucfirst($gateway) . 'Gateway.php')) {
+        if (!file_exists(__DIR__ . '/Gateways/' . ClassmapConvert::toCamelCase($this->driver) . '/' . ClassmapConvert::toCamelCase($gateway) . 'Gateway.php')) {
             throw new InvalidArgumentException("Gateway [$gateway] is not supported.");
         }
-        $this->gateways = ucfirst($gateway) . "Gateway";
+        $this->gateways = ClassmapConvert::toCamelCase($gateway) . "Gateway";
         return $this;
     }
 
@@ -62,9 +61,9 @@ class Amap
     {
         if (!$this->driver)
             throw new InvalidArgumentException("You Must Call Method {use} First.");
-        $ns = __NAMESPACE__ . "\\Gateways\\" . ucfirst($this->driver) . "\\";
-        $classname = $ns . ($this->gateways ?: (ucfirst($this->driver) . "Gateway"));
-        return new $classname($config);
+        $ns = __NAMESPACE__ . "\\Gateways\\" . ClassmapConvert::toCamelCase($this->driver) . "\\";
+        $classname = $ns . ($this->gateways ?: (ClassmapConvert::toCamelCase($this->driver) . "Gateway"));
+        return new $classname($config, $this->base_config);
     }
 
     public static function __callStatic($name, $arguments)
