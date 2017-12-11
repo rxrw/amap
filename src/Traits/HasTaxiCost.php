@@ -11,7 +11,7 @@ namespace Reprover\Amap\Traits;
 
 trait HasTaxiCost
 {
-    protected $taxiCost;
+    public $taxiCost;
 
     public function getTaxiCost(){
         return $this->taxiCost;

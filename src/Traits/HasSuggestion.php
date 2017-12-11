@@ -11,7 +11,7 @@ namespace Reprover\Amap\Traits;
 
 class HasSuggestion
 {
-    protected $suggestion;
+    public $suggestion;
 
     public function getSuggestion(){
         return $this->suggestion;
