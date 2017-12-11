@@ -11,7 +11,7 @@ namespace Reprover\Amap\Traits;
 
 trait HasDistance
 {
-    protected $distance;
+    public $distance;
 
     public function getDistance()
     {
