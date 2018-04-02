@@ -30,7 +30,6 @@ abstract class Result implements \Countable, \IteratorAggregate
      */
     public function __construct($data)
     {
-        dump($data);
         $this->original = $data;
         $this->setStatus();
         $this->items = $this->setData();
@@ -81,6 +80,16 @@ abstract class Result implements \Countable, \IteratorAggregate
     public function getIterator()
     {
         return new \ArrayIterator(is_array($this->items) ?: [$this->items]);
+    }
+    
+    public function __toString()
+    {
+        return json_encode($this->items);
+    }
+    
+    public function __get($name)
+    {
+        return $this->items->$name;
     }
 
 }
