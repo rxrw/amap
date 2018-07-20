@@ -83,4 +83,28 @@ abstract class Result implements \Countable, \IteratorAggregate
         return new \ArrayIterator(is_array($this->items) ?: [$this->items]);
     }
 
+    public function __toString()
+    {
+        return json_encode($this->items);
+    }
+
+    /**
+     * 获取items变量中的单个成员变量
+     * @param $name
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        return $this->items->$name;
+    }
+
+    /**
+     * 获取单个成员变量
+     * @param $name
+     * @return mixed
+     */
+    public function getVariable($name){
+        return $this->$name;
+    }
+
 }
