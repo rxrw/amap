@@ -9,7 +9,7 @@
 namespace Reprover\Amap\Exceptions;
 
 
-use Reprover\Amap\Exception;
+use Reprover\Amap\Exceptions\Exception;
 use Throwable;
 
 class InvalidArgumentException extends Exception
