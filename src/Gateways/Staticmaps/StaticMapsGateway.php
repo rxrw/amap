@@ -6,7 +6,7 @@
  * Time: 18:27
  */
 
-namespace Reprover\Amap\Gateways\StaticMaps;
+namespace Reprover\Amap\Gateways\Staticmaps;
 
 
 use Reprover\Amap\Gateways\Gateway;

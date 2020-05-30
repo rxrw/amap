@@ -6,7 +6,7 @@
  * Time: 09:50
  */
 
-namespace Reprover\Amap\Gateways\TrafficStatus;
+namespace Reprover\Amap\Gateways\Trafficstatus;
 
 
 use Reprover\Amap\Gateways\Gateway;

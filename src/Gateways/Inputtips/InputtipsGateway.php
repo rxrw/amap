@@ -6,7 +6,7 @@
  * Time: 09:46
  */
 
-namespace Reprover\Amap\Gateways\InputTips;
+namespace Reprover\Amap\Gateways\Inputtips;
 
 
 use Reprover\Amap\Gateways\Gateway;

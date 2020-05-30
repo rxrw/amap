@@ -6,7 +6,7 @@
  * Time: 14:26
  */
 
-namespace Reprover\Amap;
+namespace Reprover\Amap\Exceptions;
 
 class Exception extends \Exception
 {

@@ -17,5 +17,5 @@
             "Reprover\\Amap\\": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
