@@ -6,7 +6,7 @@
  * Time: 18:24
  */
 
-namespace Reprover\Amap\Gateways\Autograsp;
+namespace Reprover\Amap\Gateways\AutoGrasp;
 
 
 use Reprover\Amap\Gateways\Gateway;
