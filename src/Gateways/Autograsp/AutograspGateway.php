@@ -12,7 +12,7 @@ namespace Reprover\Amap\Gateways\AutoGrasp;
 use Reprover\Amap\Gateways\Gateway;
 use Reprover\Amap\Results\AutoGraspResult;
 
-class AutoGraspGateway extends Gateway
+class AutograspGateway extends Gateway
 {
 
     protected $uri="http://restapi.amap.com/v3/autograsp";
