@@ -11,7 +11,7 @@ namespace Reprover\Amap\Gateways\Staticmaps;
 
 use Reprover\Amap\Gateways\Gateway;
 
-class StaticMapsGateway extends Gateway
+class StaticmapsGateway extends Gateway
 {
 
     protected $uri="http://restapi.amap.com/v3/staticmap";
