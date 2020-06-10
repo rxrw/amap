@@ -12,7 +12,7 @@ namespace Reprover\Amap\Gateways\Inputtips;
 use Reprover\Amap\Gateways\Gateway;
 use Reprover\Amap\Results\InputTipsResult;
 
-class InputtipsGateway1 extends Gateway
+class InputtipsGateway extends Gateway
 {
 
     protected $uri = "http://restapi.amap.com/v3/assistant/inputtips";
