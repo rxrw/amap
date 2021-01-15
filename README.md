@@ -1,10 +1,15 @@
 # 高德开放平台API封装SDK
 
 > 小版本更新了psr规范
+>
 > 之前对这方面了解不多，因此写的可能有点问题。
+>
 > 但是欢迎指出错误而不是带着一股子嘲讽过来喷人好吗。
+>
 > 用处不多维护精力比较少
+>
 > 但基本够用
+>
 > 注：可能有不兼容改动，一些类名大小写可能有问题 请注意
 
 ## 需求
@@ -43,24 +48,35 @@
     $result = $gateway->ask();
     
 ### 额外方法
+
 >build方法传什么？
-传$config参数，参数列表为一数组，具体实现为一Reprover/Support/Config对象，
 
-返回结果为一个Reprover\AMap\Support\Result对象，类似于Laravel的Collection，不过没那么全面。可用的方法：
+传 `$config` 参数，参数列表为一数组，具体实现为一 `Reprover/Support/Config` 对象，
 
-    count() :int
-所得数据结果数量，如果有多种类型结果则只返回主要数据（如天气只返回实时天气数量，天气预报也可以用$result->forecast）获取。
+返回结果为一个 `Reprover\AMap\Support\Result` 对象，类似于 `Laravel` 的 `Collection` ，不过没那么全面。可用的方法：
+```php
+count() :int
+```
 
-    foreach($result as $k=>$v){...}
-可以用foreach进行结果的循环
+所得数据结果数量，如果有多种类型结果则只返回主要数据（如天气只返回实时天气数量，天气预报也可以用 `$result->forecast` ）获取。
 
-    isValid() :boolean
-判断结果是否正确，即根据高德返回数据status(errcode)是否为1(0)
+```php
+foreach($result as $k=>$v){...}
+```
+
+可以用 `foreach` 进行结果的循环
+
+```php
+isValid() :boolean
+```
+
+判断结果是否正确，即根据高德返回数据 `status(errcode)` 是否为 1(0)
 
 部分特殊接口有一些特殊用法，开发ing
 
 ## 说明：
-这个sdk是第一版，还存在很多不足的地方，欢迎大家提交pr和issue！同时也在版本迭代中，建议大家不要急于将此插件用于生产环境中～
+
+这个sdk是第一版（目前看起来好像不会更新了的样子），还存在很多不足的地方，欢迎大家指正。
 
 ## 接下来的任务：
 + √ 优化类名和驼峰法命名
