@@ -3,7 +3,7 @@
     "description": "高德开放平台API封装SDK",
     "require": {
         "php": ">=7.0.0",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^7.1.1"
     },
     "license": "MIT",
     "authors": [
